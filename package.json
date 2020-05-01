@@ -1,6 +1,6 @@
 {
   "name": "servuex",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Abstraction service layer on top of vuex store",
   "main": "index.js",
   "scripts": {
