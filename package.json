@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "test": "jest",
-    "build": "babel src -d dist",
+    "test": "jest src",
+    "build": "rm -rf dist && babel src -d dist --ignore **/*.spec.js",
     "release": "semantic-release"
   },
   "keywords": [
