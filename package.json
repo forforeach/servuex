@@ -4,6 +4,7 @@
   "description": "Abstraction service layer on top of vuex store",
   "main": "index.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "test": "jest",
     "build": "babel src -d dist",
     "release": "semantic-release"
@@ -40,7 +41,7 @@
         "prerelease": true
       }
     ],
-    "ci": false,
+    "ci": true,
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
