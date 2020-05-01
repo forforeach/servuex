@@ -1,9 +1,9 @@
-class A {
+export class A {
   constructor() {
     this.x = 'foo'
   }
 
   bar () {
-    console.log('bar')
+    return 'bar'
   }
 }
