@@ -1,3 +1,4 @@
+/*  eslint-disable max-classes-per-file */
 import { BaseServuex } from './base-servuex'
 
 describe('BaseServuex: ', () => {

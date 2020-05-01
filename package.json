@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
+    "format": "prettier --write src",
     "test": "jest src",
-    "build": "rm -rf dist && babel src -d dist --ignore **/*.spec.js",
+    "lint": "eslint -f codeframe ./src --ext .js --max-warnings=0",
+    "build": "rm -rf dist && babel src -d dist --ignore **/*.spec.js --source-maps",
     "release": "semantic-release"
   },
   "keywords": [
@@ -26,6 +28,10 @@
     "@babel/preset-env": "^7.9.6",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "jest": "^25.5.3",
     "prettier": "2.0.5",
     "semantic-release": "^17.0.7"
