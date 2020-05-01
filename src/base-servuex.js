@@ -1,9 +1,8 @@
 export class BaseServuex {
-
   #_namespace = null
 
   constructor(namespace) {
-    this.#_namespace = namespace; 
+    this.#_namespace = namespace
   }
 
   get namespace() {
@@ -20,8 +19,7 @@ export class BaseServuex {
     let proto = this
     while (proto && proto.constructor !== BaseServuex) {
       const currentMethodNames = Object.getOwnPropertyNames(proto).filter(
-        (property) =>
-          typeof proto[property] === "function" && property !== "constructor"
+        (property) => typeof proto[property] === 'function' && property !== 'constructor'
       )
       methodNames = new Set([...methodNames, ...currentMethodNames])
       proto = Object.getPrototypeOf(proto)

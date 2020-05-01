@@ -6,7 +6,7 @@ before_script: npm run build
 
 script: npm test -- --coverage
 
-deploy: 
+deploy:
   skip_cleanup: true
   provider: script
   script: npm run release
