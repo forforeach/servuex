@@ -4,7 +4,8 @@
   "description": "Abstraction service layer on top of vuex store",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "release": "semantic-release"
   },
   "keywords": [
     "vue",
