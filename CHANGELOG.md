@@ -1,3 +1,11 @@
+## [1.3.2](https://github.com/forforeach/servuex/compare/v1.3.1...v1.3.2) (2020-05-02)
+
+
+### Bug Fixes
+
+* **core:** use namespace for mutations ([c15a0df](https://github.com/forforeach/servuex/commit/c15a0dfe48e3253617956c6b7922d10e35578bc9))
+* **core:** use same name for mutations ([e27e891](https://github.com/forforeach/servuex/commit/e27e8911e1add135b280afe0eb15392cb6f5f9f2))
+
 ## [1.3.1](https://github.com/forforeach/servuex/compare/v1.3.0...v1.3.1) (2020-05-02)
 
 
