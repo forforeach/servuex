@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/forforeach/servuex/compare/v1.3.3...v1.3.4) (2020-05-02)
+
+
+### Bug Fixes
+
+* **core:** bind this to getter to support vuex devtools ([b2d9c54](https://github.com/forforeach/servuex/commit/b2d9c545358f6af6225824b14c5a4e521ef7bb42))
+
 ## [1.3.3](https://github.com/forforeach/servuex/compare/v1.3.2...v1.3.3) (2020-05-02)
 
 
