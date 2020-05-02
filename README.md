@@ -81,4 +81,6 @@ class UserService extends BaseServuex {
 ```
 Behind the scenes every assignment to an instance property is committed to a store by auto-generated mutation, instance getters become store getters, and properties become store state. Each Servuex subclass creates a new module in a store, thus the namespace should be unique.
 
+Check the example project [**here**](https://github.com/forforeach/servuex-example)
+
 
