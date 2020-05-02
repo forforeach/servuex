@@ -22,7 +22,7 @@ describe('BaseServuex: ', () => {
     const store = {
       state: { [namespace]: {} },
       commit: jest.fn(),
-      registerModule: jest.fn((_namespace, s) => schema = s),
+      registerModule: jest.fn((_namespace, s) => (schema = s)),
     }
     Object.defineProperty(store.state[namespace], 'hello', { get: jest.fn(() => mockHelloValue) })
     class SomeService extends BaseServuex {

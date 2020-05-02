@@ -74,10 +74,8 @@ export class BaseServuex {
       Object.defineProperty(this, name, {
         configurable: false,
         enumerable: true,
-        get() {
-          return this.#store.state[this.#_namespace][name]
-        },
-        set(v) {
+        get: () => this.#store.state[this.#_namespace][name],
+        set: (v) => {
           this.#store.commit(`${this.namespace}/${this.getMutationName(name)}`, v)
         },
       })
