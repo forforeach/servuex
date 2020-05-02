@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/forforeach/servuex/compare/v1.3.2...v1.3.3) (2020-05-02)
+
+
+### Bug Fixes
+
+* **core :** use function for getter ([22ecf31](https://github.com/forforeach/servuex/commit/22ecf3153e082ae68740c3cd450af1a32d033b7c))
+
 ## [1.3.2](https://github.com/forforeach/servuex/compare/v1.3.1...v1.3.2) (2020-05-02)
 
 
