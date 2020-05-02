@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/forforeach/servuex/compare/v1.3.4...v1.3.5) (2020-05-02)
+
+
+### Bug Fixes
+
+* update documentation ([52ba3f4](https://github.com/forforeach/servuex/commit/52ba3f40f48731c2f00431e3eb6c492a75e1389a))
+
 ## [1.3.4](https://github.com/forforeach/servuex/compare/v1.3.3...v1.3.4) (2020-05-02)
 
 
