@@ -14,6 +14,7 @@ export class BaseServuex {
 
   initialize() {
     const schema = this.getStoreSchema()
+    this.createStoreModule(schema)
     this.decorateState(schema.state)
     this.decorateActions(schema.actions)
   }
@@ -22,8 +23,8 @@ export class BaseServuex {
     const schema = {
       state: {},
       mutations: {},
-      actions: { },
-      getters: { },
+      actions: {},
+      getters: {},
     }
     let proto = this
     while (proto && proto.constructor !== BaseServuex) {
@@ -45,6 +46,10 @@ export class BaseServuex {
       proto = Object.getPrototypeOf(proto)
     }
     return schema
+  }
+
+  createStoreModule(schema) {
+    this.#store.registerModule(this.namespace, schema)
   }
 
   decorateActions(methods) {
