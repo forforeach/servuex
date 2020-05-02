@@ -1,8 +1,11 @@
 export class BaseServuex {
   #_namespace = null
 
-  constructor(namespace) {
+  #store = null
+
+  constructor(namespace, store) {
     this.#_namespace = namespace
+    this.#store = store
   }
 
   get namespace() {
@@ -10,36 +13,64 @@ export class BaseServuex {
   }
 
   initialize() {
-    const methods = this.getAllMethodNames()
-    this.decorateMethods(methods)
+    const schema = this.getStoreSchema()
+    this.decorateState(schema.state)
+    this.decorateActions(schema.actions)
   }
 
-  getAllMethodNames() {
-    let methods = {}
+  getStoreSchema() {
+    const schema = {
+      state: {},
+      mutations: {},
+      actions: { },
+      getters: { },
+    }
     let proto = this
     while (proto && proto.constructor !== BaseServuex) {
       const descriptors = Object.getOwnPropertyDescriptors(proto)
-      const currentMethods = Object.entries(descriptors)
-        .filter(([name, descriptor]) => typeof descriptor.value === 'function' && name !== 'constructor')
-        .reduce((acc, [name, descriptor]) => {
-          acc[name] = descriptor
-          return acc
-        }, {})
-      methods = { ...currentMethods, ...methods }
+      Object.entries(descriptors)
+        .filter(([name]) => name !== 'constructor')
+        .forEach(([name, descriptor]) => {
+          if (typeof descriptor.value === 'function' && name !== 'constructor') {
+            schema.actions[name] = descriptor.value
+          } else if (typeof descriptor.get === 'function') {
+            schema.getters[name] = descriptor.value
+          } else {
+            schema.state[name] = descriptor.value
+            schema.mutations[`SET_${name}`] = function mutation(state, value) {
+              state[name] = value
+            }
+          }
+        })
       proto = Object.getPrototypeOf(proto)
     }
-    return methods
+    return schema
   }
 
-  decorateMethods(methods) {
-    Object.entries(methods).forEach(([name, descriptor]) => {
+  decorateActions(methods) {
+    Object.entries(methods).forEach(([name, value]) => {
       if (!this[name].decorated) {
-        const originalMethod = descriptor.value
+        const originalMethod = value
         this[name] = async function decorator(...params) {
           return originalMethod.apply(this, params)
         }.bind(this)
         this[name].decorated = true
       }
+    })
+  }
+
+  decorateState(state) {
+    Object.entries(state).forEach(([name]) => {
+      Object.defineProperty(this, name, {
+        configurable: false,
+        enumerable: true,
+        get() {
+          return this.#store.state[this.#_namespace][name]
+        },
+        set(v) {
+          this.#store.commit(`set_${name}`, v)
+        },
+      })
     })
   }
 }
