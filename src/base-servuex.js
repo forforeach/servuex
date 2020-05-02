@@ -21,6 +21,7 @@ export class BaseServuex {
 
   getStoreSchema() {
     const schema = {
+      namespaced: true,
       state: {},
       mutations: {},
       actions: {},
