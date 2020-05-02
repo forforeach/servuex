@@ -19,6 +19,10 @@ export class BaseServuex {
     this.decorateActions(schema.actions)
   }
 
+  getMutationName(name) {
+    return `set_${name}`
+  }
+
   getStoreSchema() {
     const schema = {
       namespaced: true,
@@ -39,7 +43,7 @@ export class BaseServuex {
             schema.getters[name] = descriptor.value
           } else {
             schema.state[name] = descriptor.value
-            schema.mutations[`SET_${name}`] = function mutation(state, value) {
+            schema.mutations[this.getMutationName(name)] = function mutation(state, value) {
               state[name] = value
             }
           }
@@ -74,7 +78,7 @@ export class BaseServuex {
           return this.#store.state[this.#_namespace][name]
         },
         set(v) {
-          this.#store.commit(`set_${name}`, v)
+          this.#store.commit(this.getMutationName(name), v)
         },
       })
     })

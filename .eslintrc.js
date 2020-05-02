@@ -23,6 +23,7 @@ module.exports = {
     'no-plusplus': 'off',
     'no-return-assign': 'off',
     'no-underscore-dangle': 'off',
+    'class-methods-use-this': 'off',
     'no-unused-vars': ['error', { "argsIgnorePattern": "^_" }],
     'default-case': 'off',
     'object-curly-newline': ['error', {
