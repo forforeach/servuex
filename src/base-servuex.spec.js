@@ -16,12 +16,13 @@ describe('BaseServuex: ', () => {
   })
 
   describe('core functionality', () => {
+    let schema = {}
     const namespace = 'some'
     const mockHelloValue = 'mock hello'
     const store = {
       state: { [namespace]: {} },
       commit: jest.fn(),
-      registerModule: jest.fn(),
+      registerModule: jest.fn((_namespace, s) => schema = s),
     }
     Object.defineProperty(store.state[namespace], 'hello', { get: jest.fn(() => mockHelloValue) })
     class SomeService extends BaseServuex {
@@ -118,7 +119,17 @@ describe('BaseServuex: ', () => {
 
       someService.hello = newValue
 
-      expect(store.commit).toHaveBeenCalledWith('set_hello', newValue)
+      expect(store.commit).toHaveBeenCalledWith(`${namespace}/set_hello`, newValue)
+    })
+
+    it('calls commit that exists on the schema', () => {
+      const someService = new SomeService()
+      const newValue = 'new value'
+
+      someService.hello = newValue
+      const mutationName = store.commit.mock.calls[0][0].replace(`${namespace}/`, '')
+
+      expect(schema.mutations[mutationName]).toBeDefined()
     })
   })
 })

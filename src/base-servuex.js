@@ -78,7 +78,7 @@ export class BaseServuex {
           return this.#store.state[this.#_namespace][name]
         },
         set(v) {
-          this.#store.commit(this.getMutationName(name), v)
+          this.#store.commit(`${this.namespace}/${this.getMutationName(name)}`, v)
         },
       })
     })
