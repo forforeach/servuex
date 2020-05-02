@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/forforeach/servuex/compare/v1.3.0...v1.3.1) (2020-05-02)
+
+
+### Bug Fixes
+
+* **core:** set store module to be namespaced ([8ee4879](https://github.com/forforeach/servuex/commit/8ee48792b862b2cc5207a52c98a1f74d9e3a9443))
+
 # [1.3.0](https://github.com/forforeach/servuex/compare/v1.2.0...v1.3.0) (2020-05-02)
 
 
