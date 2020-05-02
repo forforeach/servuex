@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/forforeach/servuex/compare/v1.2.0...v1.3.0) (2020-05-02)
+
+
+### Features
+
+* **core:** create a module on initialization ([fed5aa6](https://github.com/forforeach/servuex/commit/fed5aa6353e103932420ea7e50f59453cc83e69c))
+
 # [1.2.0](https://github.com/forforeach/servuex/compare/v1.1.0...v1.2.0) (2020-05-02)
 
 
