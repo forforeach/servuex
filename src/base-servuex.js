@@ -40,7 +40,7 @@ export class BaseServuex {
           if (typeof descriptor.value === 'function' && name !== 'constructor') {
             schema.actions[name] = descriptor.value
           } else if (typeof descriptor.get === 'function') {
-            schema.getters[name] = descriptor.get
+            schema.getters[name] = descriptor.get.bind(this)
           } else {
             schema.state[name] = descriptor.value
             schema.mutations[this.getMutationName(name)] = function mutation(state, value) {
