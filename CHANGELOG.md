@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/forforeach/servuex/compare/v1.1.0...v1.2.0) (2020-05-02)
+
+
+### Features
+
+* **core:** decorate props to interact with the store ([f937df9](https://github.com/forforeach/servuex/commit/f937df99ea28188bcabb06bf7c679560fbd40a93))
+
 # [1.1.0](https://github.com/forforeach/servuex/compare/v1.0.0...v1.1.0) (2020-05-01)
 
 ### Features
