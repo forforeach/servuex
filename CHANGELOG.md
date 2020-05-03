@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/forforeach/servuex/compare/v1.3.5...v1.3.6) (2020-05-02)
+
+
+### Bug Fixes
+
+* **core:** bind property getter and setter to current this ([6cd43a4](https://github.com/forforeach/servuex/commit/6cd43a43ee9e53611d419335ad5b0debd8de8d2a))
+
 ## [1.3.5](https://github.com/forforeach/servuex/compare/v1.3.4...v1.3.5) (2020-05-02)
 
 
