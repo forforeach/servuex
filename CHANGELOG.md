@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/forforeach/servuex/compare/v1.3.6...v1.3.7) (2020-05-03)
+
+
+### Bug Fixes
+
+* ignore sources and config files tin npm ([24a3c29](https://github.com/forforeach/servuex/commit/24a3c29170d6a872eb0bfb1698d4eb8bcf614d5e))
+
 ## [1.3.6](https://github.com/forforeach/servuex/compare/v1.3.5...v1.3.6) (2020-05-02)
 
 
