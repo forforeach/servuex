@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/forforeach/servuex/compare/v1.3.8...v1.4.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* **core:** better handle inheritance props ([26dfc73](https://github.com/forforeach/servuex/commit/26dfc7337c233c78c303cd74e9cb71a1639ab797))
+
+
+### Features
+
+* **core:** preserve methods as they are (async, non-async) ([b0e6002](https://github.com/forforeach/servuex/commit/b0e6002d3482b99877e3102c15bbbe155d1027bc))
+
 ## [1.3.8](https://github.com/forforeach/servuex/compare/v1.3.7...v1.3.8) (2020-05-03)
 
 
