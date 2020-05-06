@@ -32,8 +32,16 @@ describe('BaseServuex: ', () => {
         this.initialize()
       }
 
-      someMethod(_foo, _bar, _num) {
+      getThis() {
         return this
+      }
+
+      someMethod(_foo, _bar, _num) {
+        return "someMethod"
+      }
+
+      async someAsyncMethod() {
+        return "someAsyncMethod"
       }
     }
 
@@ -53,35 +61,30 @@ describe('BaseServuex: ', () => {
       }
     }
 
-    it('decorates all methods of the instance', () => {
-      const someService = new SomeService()
-
-      someService.someMethod('foo', 'bar', 3)
-
-      expect(someService.someMethod.name).not.toEqual('someMethod')
-    })
-
-    it('should decorate methods with async method', () => {
+    it('preserves non-async methods of the instance as non-async', () => {
       const someService = new SomeService()
 
       const result = someService.someMethod('foo', 'bar', 3)
 
-      expect(result).toBeInstanceOf(Promise)
+      expect(typeof result).toBe('string')
+      expect(result).toEqual("someMethod")
     })
 
-    it('should return value of the method after invoke', async () => {
+    it('preserves async methods of the instance as async', async () => {
       const someService = new SomeService()
 
-      const result = await someService.someMethod('foo', 'bar', 3)
+      const result = someService.someAsyncMethod()
+      const value = await result
 
-      expect(result).toEqual(someService)
+      expect(result).toBeInstanceOf(Promise)
+      expect(value).toBe("someAsyncMethod")
     })
 
-    it('decorates methods along the inheritance chain', async () => {
+    it('decorates methods along the inheritance chain', () => {
       const someAnotherService = new SomeAnotherService()
 
-      const someResult = await someAnotherService.someMethod('foo', 'bar', 3)
-      const someAnotherResult = await someAnotherService.someAnotherMethod()
+      const someResult = someAnotherService.getThis()
+      const someAnotherResult = someAnotherService.someAnotherMethod()
 
       expect(someResult).toEqual(someAnotherService)
       expect(someAnotherResult).toEqual(someAnotherService)

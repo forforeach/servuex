@@ -16,7 +16,6 @@ export class BaseServuex {
     const schema = this.getStoreSchema()
     this.createStoreModule(schema)
     this.decorateState(schema.state)
-    this.decorateActions(schema.actions)
   }
 
   getMutationName(name) {
@@ -38,7 +37,7 @@ export class BaseServuex {
         .filter(([name]) => name !== 'constructor')
         .forEach(([name, descriptor]) => {
           if (typeof descriptor.value === 'function' && name !== 'constructor') {
-            schema.actions[name] = descriptor.value
+            schema.actions[name] = descriptor.value.bind(this)
           } else if (typeof descriptor.get === 'function') {
             schema.getters[name] = descriptor.get.bind(this)
           } else {
@@ -55,18 +54,6 @@ export class BaseServuex {
 
   createStoreModule(schema) {
     this.#store.registerModule(this.namespace, schema)
-  }
-
-  decorateActions(methods) {
-    Object.entries(methods).forEach(([name, value]) => {
-      if (!this[name].decorated) {
-        const originalMethod = value
-        this[name] = async function decorator(...params) {
-          return originalMethod.apply(this, params)
-        }.bind(this)
-        this[name].decorated = true
-      }
-    })
   }
 
   decorateState(state) {
