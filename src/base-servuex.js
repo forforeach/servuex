@@ -1,7 +1,11 @@
+import { AlreadyInitializedError } from './errors'
+
 export class BaseServuex {
   #_namespace = null
 
   #store = null
+
+  #initialized = false
 
   constructor(namespace, store) {
     this.#_namespace = namespace
@@ -13,9 +17,13 @@ export class BaseServuex {
   }
 
   initialize() {
+    if (this.#initialized) {
+      throw new AlreadyInitializedError()
+    }
     const schema = this.getStoreSchema()
     this.createStoreModule(schema)
     this.decorateState(schema.state)
+    this.#initialized = true
   }
 
   getMutationName(name) {
