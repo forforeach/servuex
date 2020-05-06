@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/forforeach/servuex/compare/v1.4.0...v1.4.1) (2020-05-06)
+
+
+### Bug Fixes
+
+* **core:** verify initialize is called once per instance ([2feefa1](https://github.com/forforeach/servuex/commit/2feefa1eecdf120ab88e48625e1ec133d5b5382e))
+
 # [1.4.0](https://github.com/forforeach/servuex/compare/v1.3.8...v1.4.0) (2020-05-06)
 
 
