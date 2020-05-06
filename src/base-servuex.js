@@ -27,10 +27,6 @@ export class BaseServuex {
     this.#initialized = true
   }
 
-  getMutationName(name) {
-    return `set_${name}`
-  }
-
   getStoreSchema() {
     return createStoreSchemaForInstance(this, BaseServuex)
   }
