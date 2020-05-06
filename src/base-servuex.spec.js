@@ -29,6 +29,7 @@ describe('BaseServuex: ', () => {
       constructor() {
         super(namespace, store)
         this.hello = 'bar'
+        this.prop2 = 'childProp'
         this.initialize()
       }
 
@@ -36,12 +37,16 @@ describe('BaseServuex: ', () => {
         return this
       }
 
+      get innerGetter() {
+        return 'innerGetter'
+      }
+
       someMethod(_foo, _bar, _num) {
-        return "someMethod"
+        return 'someMethod'
       }
 
       async someAsyncMethod() {
-        return "someAsyncMethod"
+        return 'someAsyncMethod'
       }
     }
 
@@ -49,6 +54,7 @@ describe('BaseServuex: ', () => {
       constructor() {
         super()
         this.foo = 100
+        this.prop1 = 'prop1'
         this.initialize()
       }
 
@@ -67,7 +73,7 @@ describe('BaseServuex: ', () => {
       const result = someService.someMethod('foo', 'bar', 3)
 
       expect(typeof result).toBe('string')
-      expect(result).toEqual("someMethod")
+      expect(result).toEqual('someMethod')
     })
 
     it('preserves async methods of the instance as async', async () => {
@@ -77,7 +83,7 @@ describe('BaseServuex: ', () => {
       const value = await result
 
       expect(result).toBeInstanceOf(Promise)
-      expect(value).toBe("someAsyncMethod")
+      expect(value).toBe('someAsyncMethod')
     })
 
     it('decorates methods along the inheritance chain', () => {
@@ -133,6 +139,20 @@ describe('BaseServuex: ', () => {
       const mutationName = store.commit.mock.calls[0][0].replace(`${namespace}/`, '')
 
       expect(schema.mutations[mutationName]).toBeDefined()
+    })
+
+    it('defines all instance methods as actions', () => {
+      // eslint-disable-next-line no-unused-vars
+      const someAnotherService = new SomeAnotherService()
+
+      expect(Object.keys(schema.actions).length).toEqual(4)
+    })
+
+    it('defines all instance getters as getters', () => {
+      // eslint-disable-next-line no-unused-vars
+      const someAnotherService = new SomeAnotherService()
+
+      expect(Object.keys(schema.getters).length).toEqual(4)
     })
   })
 })

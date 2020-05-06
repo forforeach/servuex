@@ -40,15 +40,16 @@ export class BaseServuex {
             schema.actions[name] = descriptor.value.bind(this)
           } else if (typeof descriptor.get === 'function') {
             schema.getters[name] = descriptor.get.bind(this)
-          } else {
-            schema.state[name] = descriptor.value
-            schema.mutations[this.getMutationName(name)] = function mutation(state, value) {
-              state[name] = value
-            }
           }
         })
       proto = Object.getPrototypeOf(proto)
     }
+    Object.entries(this).forEach(([key, value]) => {
+      schema.state[key] = value
+      schema.mutations[this.getMutationName(key)] = function mutation(state, val) {
+        state[key] = val
+      }
+    })
     return schema
   }
 
@@ -59,7 +60,7 @@ export class BaseServuex {
   decorateState(state) {
     Object.entries(state).forEach(([name]) => {
       Object.defineProperty(this, name, {
-        configurable: false,
+        configurable: true,
         enumerable: true,
         get: () => this.#store.state[this.#_namespace][name],
         set: (v) => {
