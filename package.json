@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "format": "prettier --write src",
-    "test": "jest test",
+    "test": "jest --collectCoverageFrom=src/**/*.js",
     "test:ci": "npm test -- --coverage && coveralls < coverage/lcov.info",
     "lint": "eslint -f codeframe . --ext .js  --ignore-pattern dist/ --max-warnings=0",
     "build": "rm -rf dist && babel src -d dist --source-maps",
