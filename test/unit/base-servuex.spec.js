@@ -85,6 +85,17 @@ describe('BaseServuex: ', () => {
       expect(store.commit).toHaveBeenCalledWith(`${namespace}/set_mockProp1`, newValue)
     })
 
+    it('updates right property on commit', () => {
+      // eslint-disable-next-line no-unused-vars
+      const childServuex = new MockServuex(namespace, store)
+
+      const newValue = 'new value'
+
+      schema.mutations.set_mockProp2(schema.state, newValue)
+
+      expect(schema.state.mockProp2).toBe(newValue)
+    })
+
     it('calls commit that exists on the schema', () => {
       const childServuex = new MockServuex(namespace, store)
 
