@@ -1,4 +1,5 @@
 import { AlreadyInitializedError } from './errors'
+import { createStoreSchemaForInstance, decorateState } from './utils'
 
 export class BaseServuex {
   #_namespace = null
@@ -31,34 +32,7 @@ export class BaseServuex {
   }
 
   getStoreSchema() {
-    const schema = {
-      namespaced: true,
-      state: {},
-      mutations: {},
-      actions: {},
-      getters: {},
-    }
-    let proto = this
-    while (proto && proto.constructor !== BaseServuex) {
-      const descriptors = Object.getOwnPropertyDescriptors(proto)
-      Object.entries(descriptors)
-        .filter(([name]) => name !== 'constructor')
-        .forEach(([name, descriptor]) => {
-          if (typeof descriptor.value === 'function' && name !== 'constructor') {
-            schema.actions[name] = descriptor.value.bind(this)
-          } else if (typeof descriptor.get === 'function') {
-            schema.getters[name] = descriptor.get.bind(this)
-          }
-        })
-      proto = Object.getPrototypeOf(proto)
-    }
-    Object.entries(this).forEach(([key, value]) => {
-      schema.state[key] = value
-      schema.mutations[this.getMutationName(key)] = function mutation(state, val) {
-        state[key] = val
-      }
-    })
-    return schema
+    return createStoreSchemaForInstance(this, BaseServuex)
   }
 
   createStoreModule(schema) {
@@ -66,15 +40,6 @@ export class BaseServuex {
   }
 
   decorateState(state) {
-    Object.entries(state).forEach(([name]) => {
-      Object.defineProperty(this, name, {
-        configurable: true,
-        enumerable: true,
-        get: () => this.#store.state[this.#_namespace][name],
-        set: (v) => {
-          this.#store.commit(`${this.namespace}/${this.getMutationName(name)}`, v)
-        },
-      })
-    })
+    decorateState(state, this, this.#_namespace, this.#store)
   }
 }
