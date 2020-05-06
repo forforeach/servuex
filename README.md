@@ -19,7 +19,7 @@ The idea behind this library is to create an abstraction layer on top of a Vuex 
 
 This library doesn't try to replace a store but rather to sit on top of it and provide a better way of interacting with it.
 
-## Instalation
+## Installation
 
 `npm install --save servuex`
 

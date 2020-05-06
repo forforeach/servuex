@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/forforeach/servuex/compare/v1.3.7...v1.3.8) (2020-05-03)
+
+
+### Bug Fixes
+
+* **core:** exclude debug files from build ([8212507](https://github.com/forforeach/servuex/commit/8212507775ed6b8429db7d34f642c2fe8f8e1ad8))
+
 ## [1.3.7](https://github.com/forforeach/servuex/compare/v1.3.6...v1.3.7) (2020-05-03)
 
 
